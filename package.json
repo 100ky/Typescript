@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/100ky/Typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/100ky/Typescript/issues"
+  },
+  "homepage": "https://github.com/100ky/Typescript#readme"
+}
