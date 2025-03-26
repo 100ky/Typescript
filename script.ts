@@ -1,9 +1,198 @@
-console.log("tomáš je tu")
-console.log("tomáš odešel aaaaaaaaaaa")
+/*
+class Realitka {
+    // Nejprve musíme deklarovat vlastnosti třídy
+    windows: number;
+    doors: number;
+    color: string;
+    height: number;
+    isNew: boolean;
+    garage: boolean;
 
+    constructor(
+        windows: number,
+        doors: number,
+        color: string,
+        height: number,
+        isNew: boolean,
+        garage: boolean
+    ) {
+        // Tělo konstruktoru musí být uvnitř závorek
+        this.windows = windows;
+        this.doors = doors;
+        this.color = color;
+        this.height = height;
+        this.isNew = isNew;
+        this.garage = garage;
+    }
 
-function add(a: number, b: number): number {
-    return a + b;
+    // Přidání metody pro zobrazení na stránce
+    getDisplayHTML(): string {
+        return `
+            <div class="property-title">Informace o nemovitosti</div>
+            <div class="property-details">
+                <p>Počet oken: ${this.windows}</p>
+                <p>Počet dveří: ${this.doors}</p>
+                <p>Barva: ${this.color}</p>
+                <p>Výška: ${this.height} m</p>
+                <p>Nový dům: ${this.isNew ? 'Ano' : 'Ne'}</p>
+                <p>Garáž: ${this.garage ? 'Ano' : 'Ne'}</p>
+            </div>
+        `;
+    }
 }
 
-console.log(add(2, 3)); // 5
+// Vytvoření objektu (oprava názvu proměnné "house1" místo "hause1")
+const house1 = new Realitka(50, 20, "red", 10, true, true);
+
+// Funkce pro zobrazení na stránce
+function displayHouseOnPage(house: Realitka): void {
+    const displayElement = document.getElementById('house-display');
+    if (displayElement) {
+        displayElement.innerHTML = house.getDisplayHTML();
+    } else {
+        console.error("Element pro zobrazení nebyl nalezen!");
+    }
+}
+
+// Zobrazení na stránce po načtení DOM
+document.addEventListener('DOMContentLoaded', () => {
+    displayHouseOnPage(house1);
+    console.log(house1);
+});
+
+// práce s poli
+let employees: any[]
+employees = ["David", "John", "Jane", "Jack", "Jill" , 5, true];
+
+for (const oneEmployee of employees) {
+    console.log(oneEmployee);
+}
+
+const person = {
+    name: "David",
+    age: 30,
+    isEmployee: true,
+    hobbies: ["reading", "swimming", "running"],
+}
+
+for (const oneHobbie of person.hobbies) {
+    console.log(`${person.name} a má rád ${oneHobbie}`);
+}
+
+// ukol
+const hous = {
+    windows: 4,
+    doors: 2,
+    color: "red",
+    height: 10,
+    isNew: true,
+    garage: true,
+    vipClients: ["Build-store", "Damage-to", "Bum-bum-company"],
+    otherClients: ["Daniel", "John", "Jane", "Jack", "Jill"]
+}
+
+console.log(`O dům který má ${hous.windows} okna a ${hous.doors} dveře, barva je ${hous.color} a výška je ${hous.height} m, je nový: ${hous.isNew ? 'Ano' : 'Ne'} a má garáž: ${hous.garage ? 'Ano' : 'Ne'} mají zájem tito VIP klienti ${hous.vipClients} a tito další klienti ${hous.otherClients}`);
+
+// tuples- pole s fixní délkou
+
+const tuples: [string, number, boolean] = ["David", 30, true];
+
+const employees: {
+    name: string;
+    age: number;
+    isEmployee: boolean;
+    hobbies: [string, string, string]; // tohle je tuples, definujeme fixní délku pole
+} = {
+    name: "David",
+    age: 30,
+    isEmployee: true,
+    hobbies: ["reading", "swimming", "running"],
+};
+
+for (const oneHobie of employees.hobbies) {
+    console.log(`${employees.name} má rád ${oneHobie}`);
+}
+
+// Enum
+
+enum Role { ADMIN, READ_ONLY, AUTHOR };
+
+const employees = {
+    name: "David",
+    age: 30,
+    role: Role.READ_ONLY
+}
+
+//ukol
+enum House_condition { habited = "obydlený", uninhabited = "neobyvatelný", normal = "Normálka" };
+
+const hause = {
+    windows: 4,
+    doors: 2,
+    color: "red",
+    height: 10,
+    isNew: true,
+    garage: true,
+    vipClients: ["Build-store", "Damage-to", "Bum-bum-company"],
+    otherClients: ["Daniel", "John", "Jane", "Jack", "Jill"],
+    role: House_condition.uninhabited
+}
+
+console.log(hause.role);
+
+
+// Union type
+
+function combine(input1: number | string, input2: number | string) {
+    let result;
+    if (typeof(input1) === 'number' && typeof(input2) === 'number') {
+        result = input1 + input2;
+    } else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+
+const combinedAges = combine(30, 26);
+const combinedNames = combine("David", "John");
+console.log(combinedAges + " " + combinedNames);
+
+
+// Literal type
+
+function combine(input1, input2, resultConversion) {
+    let result;
+    if (typeof (input1) === 'number' && typeof (input2) === 'number' || resultConversion === 'as-number') {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+const combinedAges = combine(30, 26, ' as-number');
+const combinedStringAges = combine('30', '26', 'as-number');
+const combinedNames = combine("David", "John", 'as-text');
+console.log(combinedAges + " " + combinedNames + " " + combinedStringAges);
+
+*/
+// Type Aliases
+type Combinable = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text';
+
+
+
+function combine(input1: Combinable, input2: Combinable, resultConversion: ConversionDescriptor): Combinable {
+    let result: Combinable;
+    if (typeof (input1) === 'number' && typeof (input2) === 'number' || resultConversion === 'as-number') {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+const combinedAges = combine(30, 26, 'as-number');
+const combinedStringAges = combine('30', '26', 'as-number');
+const combinedNames = combine("David", "John", 'as-text');
+console.log(combinedAges + " " + combinedNames + " " + combinedStringAges);
