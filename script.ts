@@ -175,7 +175,7 @@ const combinedStringAges = combine('30', '26', 'as-number');
 const combinedNames = combine("David", "John", 'as-text');
 console.log(combinedAges + " " + combinedNames + " " + combinedStringAges);
 
-*/
+
 // Type Aliases
 type Combinable = number | string;
 type ConversionDescriptor = 'as-number' | 'as-text';
@@ -196,3 +196,101 @@ const combinedAges = combine(30, 26, 'as-number');
 const combinedStringAges = combine('30', '26', 'as-number');
 const combinedNames = combine("David", "John", 'as-text');
 console.log(combinedAges + " " + combinedNames + " " + combinedStringAges);
+
+// ukol
+const hause = {
+    windows: 4,
+    doors: 2,
+    color: "red",
+    height: 10,
+}
+
+const hause2 = {
+    windows: 5,
+    doors: 1,
+    color: "blue",
+    height: 10,
+    isNew: true,
+ }
+ 
+function sentence(myObject) {
+    return `O dům který má ${myObject.windows} okna a ${myObject.doors} dveře, barva je ${myObject.color} a výška je ${myObject.height} m`;
+} 
+
+
+console.log(sentence(hause));
+console.log(sentence(hause2));
+
+
+// fukce jako typ
+function sum(num1: number, num2: number) {
+    return num1 + num2;
+}
+
+function test(description: string): string {
+    return description;
+}
+
+// Definování typu funkce
+let myFunction: (x: number, y: number) => number;
+
+// Přiřazení funkce, která odpovídá typu
+myFunction = sum;
+
+// Toto by způsobilo chybu, protože `test` neodpovídá typu
+// myFunction = test;
+
+// Volání funkce
+console.log(myFunction(10, 40));
+
+let myNumber: 5;
+let myString: "David";
+
+
+console.log(myFunction(5, 10));
+
+
+// ukol
+
+function test1(num1: number, num2: number): number {
+    return num1 + num2;
+}
+
+let myFunction: (x: number, y: number) => number;
+myFunction = test1;
+
+function test2(description: string) {
+    return description;
+}
+
+let myFunction2: (x: string) => string;
+myFunction2 = test2;
+
+function test3(myString: string, myNumber: number) {
+    return myString
+}
+
+let myFunction3: (x: string, y: number) => string;
+myFunction3 = test3;
+
+*/
+// Callback funkce
+
+const y = (nejakeCislo: number ) => console.log(nejakeCislo);
+
+y(10);
+
+function sum(n1: number, n2: number, callBackFun: (n3: number) => void): void {
+    const result = n1 + n2;
+    callBackFun(result); // Zavolání callback funkce s výsledkem
+}
+
+// Callback funkce vrací hodnotu, ale ta se nikde nepoužije
+sum(5, 30, (x) => {
+    console.log(x); // Výstup: 35
+    return x * 2; // Tato hodnota se nikde nepoužije
+});
+
+// Hlavní funkce `sum` stále vrací `undefined` (protože má typ `void`)
+const result = sum(5, 30, (x) => console.log(x));
+console.log(result); // Výstup: undefined
