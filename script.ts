@@ -273,7 +273,7 @@ function test3(myString: string, myNumber: number) {
 let myFunction3: (x: string, y: number) => string;
 myFunction3 = test3;
 
-*/
+
 // Callback funkce
 
 const y = (nejakeCislo: number ) => console.log(nejakeCislo);
@@ -294,3 +294,37 @@ sum(5, 30, (x) => {
 // Hlavní funkce `sum` stále vrací `undefined` (protože má typ `void`)
 const result = sum(5, 30, (x) => console.log(x));
 console.log(result); // Výstup: undefined
+
+//Unknow type
+
+let test: unknown; // Proměnná může obsahovat libovolný typ
+let result: string;
+
+test = 5; // Přiřazení čísla
+test = "David"; // Přiřazení řetězce
+
+// Před použitím musíme ověřit typ
+if (typeof test === 'string') {
+    result = test; // Bezpečné přiřazení, protože víme, že test je string
+    console.log(result); // Výstup: David
+}
+
+// Toto by způsobilo chybu, protože typ není ověřen
+// result = test; // Chyba: Typ 'unknown' není přiřaditelný k typu 'string'.
+
+
+//Never type
+
+function generateError(errorText: string, errorNumber: number): never {
+    throw { message: errorText, errorCode: errorNumber }; // Funkce nikdy nevrátí hodnotu
+}
+
+generateError("Chyba!", 500); // Vyvolá výjimku a ukončí běh programu
+
+function infiniteLoop(): never {
+    while (true) {
+        console.log("Toto se bude opakovat navždy");
+    }
+}
+    
+*/
