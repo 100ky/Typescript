@@ -347,4 +347,45 @@ if(n1+n2 >= 0) {
     }
     return "Chyba: součet je záporný";
 }
+// arrow function
+    const sumArrow = (n1: number, n2: number) => {
+        return n1 + n2;
+    }
+// nebo ještě kratší zápis
+const sumArrow = (n1: number, n2: number) => n1 + n2;
+
+//Defaultní parametr
+cosnt sumDefault = (n1: number, n2: number = 10) => n1+n2;
+console.log(sumDefault(5)); // Výstup: 15
+
+//Spread operátor
+const hobbies = ["čtení", "plavání", "běhání"];
+const activeHobbies = ["jízda na kole"];
+activeHobbies.push(...hobbies); // Přidání všech prvků z hobbies do activeHobbies pomocí ...
+
+//Rest parametr
+const sum = (...numbers: number[]) => { 
+    return numbers.reduce((acc, curr) => acc + curr, 0); // Použití reduce pro sečtení všech čísel
+ }
+console.log(sum(1, 2, 3, 4, 5)); // Výstup: 15
+console.log(sum (1, 2, 3)); // Výstup: 6
 */
+
+//Array destrukturing
+const employees = ["David", "John", "Jane", "Jack", "Jill"];
+const [employee1, employee2, ...restOfEmployees] = employees; // Destrukturing pole
+
+console.log(employee1); // Výstup: David
+console.log(employee2); // Výstup: John
+console.log(restOfEmployees); // Výstup: ["Jane", "Jack", "Jill"] ostatní zaměstnanci
+// Destrukturing objektu
+const person = {
+    name: "Tom",
+    age: 30,
+    isEmployee: true,
+    hobbies: ["reading", "swimming", "running"],
+}
+const { name: personName, age, ...restOfPerson } = person; // Destrukturing objektu
+console.log(personName); // Výstup: David
+console.log(age); // Výstup: 30
+console.log(restOfPerson); // Výstup: { isEmployee: true, hobbies: ["reading", "swimming", "running"] }
