@@ -1,3 +1,4 @@
+"use strict";
 /*
 class Realitka {
     // Nejprve musíme deklarovat vlastnosti třídy
@@ -215,7 +216,7 @@ const hause2 = {
  
 function sentence(myObject) {
     return `O dům který má ${myObject.windows} okna a ${myObject.doors} dveře, barva je ${myObject.color} a výška je ${myObject.height} m`;
-} 
+}
 
 
 console.log(sentence(hause));
@@ -327,4 +328,24 @@ function infiniteLoop(): never {
     }
 }
     
-*/
+    // příkazy v tsconfig.json
+// "target": "es5", // cílová verze JavaScriptu
+// "module": "commonjs", // modulární systém
+// "outDir": "./dist", // výstupní adresář pro zkompilované soubory
+// "rootDir": "./src", // kořenový adresář pro zdrojové soubory
+// "strict": true, // zapnutí přísného režimu
+// noUnusedLocals: true, // varování pro nepoužité lokální proměnné
+// if(5 > 3) {
+//     console.log("5 je větší než 3");
+// noUnusedParameters: true, // varování pro nepoužité parametry funkcí
+// function test(a: number, b: number) {
+//     console.log(a);
+//     // b není použitý, takže TypeScript vyhodí varování
+//noImplicitReturns: true, // varování pro funkce, které nemají explicitní návratovou hodnotu
+// function sum2(a: number, b: number)
+if(n1+n2 >= 0) {
+    return n1 + n2;
+    }
+    return "Chyba: součet je záporný";
+}
+*/ 
