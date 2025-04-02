@@ -369,7 +369,7 @@ const sum = (...numbers: number[]) => {
  }
 console.log(sum(1, 2, 3, 4, 5)); // Výstup: 15
 console.log(sum (1, 2, 3)); // Výstup: 6
-*/
+
 
 //Array destrukturing
 const employees = ["David", "John", "Jane", "Jack", "Jill"];
@@ -389,3 +389,200 @@ const { name: personName, age, ...restOfPerson } = person; // Destrukturing obje
 console.log(personName); // Výstup: David
 console.log(age); // Výstup: 30
 console.log(restOfPerson); // Výstup: { isEmployee: true, hobbies: ["reading", "swimming", "running"] }
+
+// Objektově orientované programování (OOP) v TypeScriptu
+
+class Department {
+    name: string;
+    number: number;
+
+    constructor(na: string, nu: number) {
+        this.name = na;
+        this.number = nu;
+    }
+}
+
+const department1 = new Department("IT", 1);
+const department2 = new Department("HR", 2);
+
+console.log(department1);
+console.log(department2);
+console.log(department1.name);
+console.log(department2.number);
+console.log(department1.number);
+console.log(department2.name);
+console.log(department1.name + " " + department1.number);
+console.log(department2.name + " " + department2.number);
+//ukol
+
+class House {
+    street: string;
+    number: number;
+    floors: number;
+
+    constructor(street: string, number: number, floors: number) {
+        this.street = street;
+        this.number = number;
+        this.floors = floors;
+    }
+}
+const house1 = new House("Pernerova", 1, 2);
+const house2 = new House("Litomyšlská", 2, 3);
+const house3 = new House("T.Novákové", 8, 4);
+
+console.log(house1);
+console.log(house2);
+console.log(house3);
+
+// OOP a metody
+
+class Department {
+    departmentName: string;
+    number: number;
+
+    constructor(departmentName: string, number: number) {
+        this.departmentName = departmentName;
+        this.number = number;
+    }
+
+    describe() {
+        console.log( `Oddělení ${this.departmentName} má číslo ${this.number}`);
+    }
+}
+
+const HRdep = new Department("Human resources", 100);
+const MAdep = new Department("Marketing", 200);
+const FIdep = new Department("Finance", 300);
+HRdep.describe(); // Výstup: Oddělení Human resources má číslo 100
+MAdep.describe(); // Výstup: Oddělení Marketing má číslo 200
+FIdep.describe(); // Výstup: Oddělení Finance má číslo 300
+
+// ukol
+
+class House {
+    street: string;
+    number: number;
+    floors: number;
+    state: string;
+
+    constructor(street: string, number: number, floors: number, state: string) {
+        this.street = street;
+        this.number = number;
+        this.floors = floors;
+        this.state = state;
+    }
+    describe() {
+        console.log(`Jedná se o ${this.state} dům s číslem ${this.number}. Nachází se na ulici ${this.street}. Má ${this.floors} podlaží `)
+    }
+}
+
+const house1 = new House("Pernerova", 1, 2, "nový");
+const house2 = new House("Litomyšlská", 2, 3, "starý");
+const house3 = new House("T.Novákové", 8, 4, "zchátralý");
+house1.describe(); // Výstup: Jedná se o nový dům s číslem 1. Nachází se na ulici Pernerova. Má 2 podlaží
+house2.describe(); // Výstup: Jedná se o starý dům s číslem 2. Nachází se na ulici Litomyšlská. Má 3 podlaží
+house3.describe(); // Výstup: Jedná se o zchátralý dům s číslem 8. Nachází se na ulici T.Novákové. Má 4 podlaží
+
+// Public a private vlastnosti
+class Department {
+    private departmentName: string;
+    private number: number;
+    private employee: string[] = [];
+
+    constructor(departmentName: string, number: number) {
+        this.departmentName = departmentName;
+        this.number = number;
+    }
+
+    describe() {
+        console.log(`Oddělení ${this.departmentName} má číslo ${this.number} a má zaměstnance ${this.employee} .`);
+    }
+    // Přidání zaměstnanců
+    addEmployee(oneEmployee: string) {
+        this.employee.push(oneEmployee);
+    }
+    printAllEmployees() {
+        for (const oneEmployee of this.employee) {
+            console.log(oneEmployee);
+        }
+        }
+}
+const HRdep = new Department("Human resources", 100);
+const MAdep = new Department("Marketing", 200);
+const FIdep = new Department("Finance", 300);
+
+
+HRdep.addEmployee("Davida");
+MAdep.addEmployee("Johna");
+FIdep.addEmployee("Jane");
+
+HRdep.describe();
+MAdep.describe(); 
+FIdep.describe(); 
+
+HRdep.printAllEmployees();
+
+// Readonly vlastnosti
+class Department {
+    private readonly departmentName: string; 
+    private readonly number: number;
+    private employee: string[] = [];
+
+    constructor(departmentName: string, number: number) {
+        this.departmentName = departmentName;
+        this.number = number;
+    }
+
+    describe() {
+        console.log(`Oddělení ${this.departmentName} má číslo ${this.number} a má zaměstnance ${this.employee} .`);
+    }
+    // Přidání zaměstnanců
+    addEmployee(oneEmployee: string) {
+        this.employee.push(oneEmployee);
+    }
+    printAllEmployees() {
+        for (const oneEmployee of this.employee) {
+            console.log(oneEmployee);
+        }
+        }
+}
+const HRdep = new Department("Human resources", 100);
+const MAdep = new Department("Marketing", 200);
+const FIdep = new Department("Finance", 300);
+HRdep.addEmployee("Davida");
+MAdep.addEmployee("Johna");
+FIdep.addEmployee("Jane");
+HRdep.describe();
+
+*/
+// Inheritance (dědičnost)
+class Department {
+    private readonly departmentName: string;
+    private readonly number: number;
+    protected employee: string[] = []; // Použití protected pro dědičnost
+
+    constructor(departmentName: string, number: number) {
+        this.departmentName = departmentName;
+        this.number = number;
+    }
+
+    describe() {
+        console.log(`Oddělení ${this.departmentName} má číslo ${this.number} a má zaměstnance ${this.employee} .`);
+    }
+    // Přidání zaměstnanců
+    addEmployee(oneEmployee: string) {
+        this.employee.push(oneEmployee);
+    }
+    printAllEmployees() {
+        for (const oneEmployee of this.employee) {
+            console.log(oneEmployee);
+        }
+        }
+}
+class ITDepartment extends Department {
+
+    constructor(number: number) {
+        super("IT", number); // Zavolání konstruktoru nadřazené třídy
+    }
+}
+const ITdep = new ITDepartment(100);
