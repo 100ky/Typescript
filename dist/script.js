@@ -576,9 +576,25 @@ class Department {
         }
     }
 }
+// Dědění třídy Department
 class ITDepartment extends Department {
-    constructor(number) {
+    constructor(number, admins) {
         super("IT", number); // Zavolání konstruktoru nadřazené třídy
+        this.admins = admins;
+        this.admins = admins;
+    }
+    // Přidání zaměstnanců a rolí
+    addEmployee(name) {
+        if (name === "David" || name === "John") // porovná zda je zaměšstnanec admin
+         {
+            return "Tento zaměstnanec má přístup.";
+        }
+        else {
+            this.employee.push(name);
+            return "Zaměstnanec byl přidán."; // pokud ne, přidá zaměstnance do pole employee
+        }
     }
 }
-const ITdep = new ITDepartment(100);
+const ITdep = new ITDepartment(100, ["David", "John"]);
+ITdep.addEmployee("Jane");
+console.log(ITdep);
