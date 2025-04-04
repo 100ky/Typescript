@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realitní kancelář</title>
+    <title>Učíme se v TypeScriptu</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Realitní kancelář</h1>
-
-    <div class="my-test">Toto je jen test</div>
+    <header>
+        <h1><i class="fas fa-code"></i> Učíme se v TypeScriptu</h1>
+    </header>
     
-    <!-- Zde bude zobrazen výstup -->
-    <div id="house-display" class="property-card"></div>
+    <div class="container">
+        <div class="info-banner">
+            <h2><i class="fas fa-info-circle"></i> Proč TypeScript?</h2>
+            <p>TypeScript nabízí řadu výhod oproti klasickému JavaScriptu:</p>
+            <ul class="advantages-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Statická typová kontrola</strong> - odhalí chyby již během vývoje, ne až za běhu</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Lepší nápověda v IDE</strong> - inteligentní dokončování kódu a refaktoring</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Jazykové funkce z budoucích verzí JS</strong> - třídní dědičnost, generické typy, enum</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Větší udržitelnost</strong> - snadnější správa velkých kódových základen</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Lepší dokumentace</strong> - explicitní typy slouží jako dokumentace</li>
+            </ul>
+        </div>
+        
+        <!-- Zde bude zobrazen výstup -->
+        <div id="house-display" class="property-card"></div>
+    </div>
     
     <script src="dist/script.js" defer></script>
     <script src="dist/test.js" defer></script>

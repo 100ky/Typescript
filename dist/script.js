@@ -555,46 +555,150 @@ MAdep.addEmployee("Johna");
 FIdep.addEmployee("Jane");
 HRdep.describe();
 
-*/
-// Inheritance (dědičnost)
+
+// Inheritance (dědičnost) - OOP koncept umožňující dědění vlastností a metod z jiné třídy
 class Department {
-    constructor(departmentName, number) {
-        this.employee = []; // Použití protected pro dědičnost
+    // readonly - vlastnost nelze po inicializaci měnit
+    // private - přístup pouze uvnitř této třídy
+    private readonly departmentName: string;
+    private readonly number: number;
+    // protected - přístupné v této třídě i ve všech třídách, které dědí z této třídy
+    protected employee: string[] = []; // Použití protected pro dědičnost
+
+    constructor(departmentName: string, number: number) {
         this.departmentName = departmentName;
         this.number = number;
     }
+
+    // Metoda popisující oddělení
     describe() {
         console.log(`Oddělení ${this.departmentName} má číslo ${this.number} a má zaměstnance ${this.employee} .`);
     }
     // Přidání zaměstnanců
-    addEmployee(oneEmployee) {
+    addEmployee(oneEmployee: string) {
         this.employee.push(oneEmployee);
     }
+    // Metoda pro výpis všech zaměstnanců v konzoli
     printAllEmployees() {
         for (const oneEmployee of this.employee) {
             console.log(oneEmployee);
         }
-    }
-}
-// Dědění třídy Department
-class ITDepartment extends Department {
-    constructor(number, admins) {
-        super("IT", number); // Zavolání konstruktoru nadřazené třídy
-        this.admins = admins;
-        this.admins = admins;
-    }
-    // Přidání zaměstnanců a rolí
-    addEmployee(name) {
-        if (name === "David" || name === "John") // porovná zda je zaměšstnanec admin
-         {
-            return "Tento zaměstnanec má přístup.";
         }
-        else {
+}
+
+// Dědění třídy Department - ITDepartment dědí všechny vlastnosti a metod z třídy Department
+class ITDepartment extends Department {
+    // Konstruktor s parametry a deklarací public vlastnosti přímo v parametru
+    mainAdmin: string; // Deklarace vlastnosti mainAdmin
+
+    constructor(number: number, public admins: string[]) {
+        // super() musí být vždy jako první příkaz v konstruktoru potomka
+        super("IT", number); // Zavolání konstruktoru nadřazené třídy
+        this.mainAdmin = admins[0]; // Nastavení hlavního administrátora
+        this.admins = admins; // Inicializace administrátorů
+    }
+    // Getter - metoda pro získání seznamu administrátorů
+    get leadAdmin() {
+        if (this.mainAdmin) {
+            return this.mainAdmin;
+        }
+        throw new Error("Není nastaven hlavní administrátor.");
+    }
+    // setter - metoda pro nastavení hlavního administrátora
+    set leadAdmin(value: string) {
+        if (this.mainAdmin) {
+            this.mainAdmin = value;
+        } else {
+            throw new Error("Není nastaven hlavní administrátor.");
+        }
+    }
+
+
+
+    // Přepsání (override) metody z rodičovské třídy - stejné jméno, jiná implementace
+    addEmployee(name: string): string {
+        if (name === "David" || name === "John") // porovná zda je zaměstnanec admin
+        {
+            return "Tento zaměstnanec má přístup.";
+        } else {
+            // Přístup k protected vlastnosti z rodičovské třídy
             this.employee.push(name);
             return "Zaměstnanec byl přidán."; // pokud ne, přidá zaměstnance do pole employee
         }
     }
+
 }
+
+
+
+
+// Vytvoření instance třídy ITDepartment s číslem oddělení a seznamem administrátorů
 const ITdep = new ITDepartment(100, ["David", "John"]);
+// Volání přepsané metody addEmployee
 ITdep.addEmployee("Jane");
+
+// Výpis celého objektu ITdep do konzole
 console.log(ITdep);
+
+console.log(ITdep.leadAdmin); // Výpis hlavního administrátora
+// Změna hlavního administrátora
+ITdep.leadAdmin = "John";
+
+
+
+// statické metody a vlastnosti
+class Department {
+    static fiscalYear = 2023; // statická vlastnost třídy
+    private employees: string[] = []; // instance vlastnost třídy
+
+    constructor(private readonly departmentName: string, private readonly number: number) {
+        this.departmentName = departmentName;
+        this.number = number;
+    }
+
+    // statická metoda
+    static createEmployee(name: string) {
+        return { name: name };
+    }
+    // instance metoda
+    describe() {
+        console.log(`Oddělení ${this.departmentName} má číslo ${this.number} a má zaměstnance ${this.employees} .`);
+    }
+    // Přidání zaměstnanců
+    addEmployee(oneEmployee: string) {
+        this.employees.push(oneEmployee);
+    }
+    // Metoda pro výpis všech zaměstnanců v konzoli
+    printAllEmployees() {
+        for (const oneEmployee of this.employees) {
+            console.log(oneEmployee);
+        }
+    }
+}
+// Vytvoření instance třídy Department
+const HRdep = new Department("Human resources", 100);
+const MAdep = new Department("Marketing", 200);
+const FIdep = new Department("Finance", 300);
+// Přidání zaměstnanců
+HRdep.addEmployee("Davida");
+MAdep.addEmployee("Johna");
+FIdep.addEmployee("Jane");
+// Zavolání instance metody
+HRdep.describe();
+MAdep.describe();
+FIdep.describe();
+// Zavolání statické metody
+const employee1 = Department.createEmployee("David");
+const employee2 = Department.createEmployee("Jabadiáš");
+
+// Úprava: Výpis obou zaměstnanců do konzole
+console.log("První zaměstnanec:", employee1);
+console.log("Druhý zaměstnanec:", employee2);
+console.log("Fiskální rok:", Department.fiscalYear);
+
+// Alternativně můžete vypsat oba najednou
+console.log("Oba zaměstnanci:", employee1, employee2);
+
+// Nebo je vypsat jako pole
+console.log("Zaměstnanci jako pole:", [employee1, employee2]);
+*/ 
