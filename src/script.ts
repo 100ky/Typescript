@@ -701,3 +701,30 @@ console.log("Oba zaměstnanci:", employee1, employee2);
 // Nebo je vypsat jako pole
 console.log("Zaměstnanci jako pole:", [employee1, employee2]);
 */
+// abstraktní classy
+
+abstract class Department {
+    name: string;
+    number: number;
+
+    constructor(name: string, number: number) {
+        this.name = name
+        this.number = number;
+    }
+    abstract describe(): void
+}
+    
+
+// Třída ITDepartment dědí z abstraktní třídy Department
+// a implementuje abstraktní metodu describe
+class ITDepartment extends Department {
+    constructor(depName: string, depNum: number) {
+        super(depName, depNum);
+    }
+    describe() {
+        console.log(`Oddělení ${this.name} má číslo ${this.number}`);
+    }
+}
+
+const ITdepCzech = new ITDepartment("CzechIT", 900);
+ITdepCzech.describe(); // Výstup: Oddělení CzechIT má číslo 900
