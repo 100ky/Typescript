@@ -700,7 +700,7 @@ console.log("Oba zaměstnanci:", employee1, employee2);
 
 // Nebo je vypsat jako pole
 console.log("Zaměstnanci jako pole:", [employee1, employee2]);
-*/
+
 // abstraktní classy
 
 abstract class Department {
@@ -728,3 +728,140 @@ class ITDepartment extends Department {
 
 const ITdepCzech = new ITDepartment("CzechIT", 900);
 ITdepCzech.describe(); // Výstup: Oddělení CzechIT má číslo 900
+
+
+// Singleton a private constructor
+class Singleton {
+    private static instance: Singleton;  // Statická proměnná uchovávající instanci
+
+    private constructor() {  // Privátní konstruktor zabraňuje vytvoření instance pomocí "new"
+        // Inicializace singletonu
+    }
+
+    public static getInstance(): Singleton {  // Veřejná metoda pro získání instance
+        if (!Singleton.instance) {  // Pokud instance neexistuje, vytvoříme ji
+            Singleton.instance = new Singleton();
+        }
+        return Singleton.instance;  // Vrátíme existující instanci
+    }
+}
+
+// Použití singletonu
+const singleton1 = Singleton.getInstance();
+const singleton2 = Singleton.getInstance();
+console.log(singleton1 === singleton2); // true, oba odkazy ukazují na stejnou instanci
+
+// Interface
+interface Person {
+    name: string
+    age: number
+
+    greet(phrase: string): void
+}
+
+let person1: Person;
+person1 = {
+    name: "David",
+    age: 34,
+    
+    greet(myPhrase: string) {
+        console.log(myPhrase + " " + this.name);
+    }
+}
+person1.greet("Ahoj, já jsem");
+// Interface a třídy
+interface IamGreeting {
+    name: string
+
+    greet(phrase: string): void
+}
+class Person implements IamGreeting {
+    name: string;
+
+    constructor(n: string) {
+        this.name = n
+    }
+    
+    greet(myPhrase: string) {
+        console.log(myPhrase + " " + this.name);
+    }
+}
+
+const person1 = new Person("David");
+
+
+// Rozšířený interface + readonly vlastnost
+
+
+// Interface deklarující readonly vlastnost 'name'
+// 'readonly' zajišťuje, že jednou přiřazená hodnota nemůže být změněna
+interface Name {
+    readonly name: string
+}
+
+// Interface deklarující metodu 'greet'
+interface IamGreeting {
+    greet(phrase: string): void
+}
+
+// Třída Person implementuje oba interfaces - Name a IamGreeting
+// Musí obsahovat všechny vlastnosti a metody definované v těchto interfaces
+class Person implements Name, IamGreeting {
+    name: string; // Implementace vlastnosti z interface Name
+
+    constructor(n: string) {
+        this.name = n // Inicializace jména přes konstruktor
+    }
+    
+    // Implementace metody z interface IamGreeting
+    greet(myPhrase: string) {
+        console.log(myPhrase + " " + this.name); // Vypíše pozdrav a jméno
+    }
+}
+// Vytvoření instancí třídy Person
+const person1 = new Person("David"); // První instance s jménem David
+const person2 = new Person("John");  // Druhá instance s jménem John
+// Zavolání metody greet na obou instancích
+person1.greet("Ahoj, já jsem"); // Výstup: Ahoj, já jsem David
+person2.greet("Ahoj, já jsem"); // Výstup: Ahoj, já jsem John
+
+// Interface jako funkce
+
+interface AddFunction {
+    (a: number, b: number): number; // Definice typu funkce
+} 
+// Funkce splňující typ AddFunction
+let sum: AddFunction; // Deklarace proměnné typu AddFunction
+sum = (n1: number, n2: number) => {
+    return n1 + n2; // Implementace funkce
+}
+console.log(sum(5, 10)); // Výstup: 15
+*/
+
+// Volitelné parametry a metody
+interface Name {
+    name: string;
+    age?: number; // Volitelný parametr
+}
+
+interface IamGreeting extends Name {
+    greet(phrase: string): void;
+}
+ class Person implements IamGreeting {
+    name: string;
+    age?: number; // Volitelný parametr
+
+    constructor(n: string, a?: number) {
+        this.name = n;
+        this.age = a;
+    }
+    
+    greet(myPhrase: string) {
+        console.log(myPhrase + " " + this.name);
+    }
+}
+const person1 = new Person("David", 34);
+const person2 = new Person("John");
+
+console.log(person1);
+person2.greet("Ahoj, já jsem");
